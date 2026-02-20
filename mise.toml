@@ -1,0 +1,36 @@
+[tools]
+node = "24.13.1"
+python = "3.10.19"
+uv = "latest"
+
+[env]
+VIRTUAL_ENV = "{{config_root}}/apps/api/.venv"
+PATH = "{{config_root}}/apps/api/.venv/bin:{{env.PATH}}"
+
+[tasks."setup"]
+description = "Install all dependencies for both Frontend and Backend"
+run = """
+  # 1. Setup Backend
+  echo "--- Setting up Django with uv ---"
+  cd apps/api
+  uv sync
+  
+  # 2. Setup Frontend
+  echo "--- Setting up Next.js dependencies ---"
+  cd ../web
+  npm install
+
+  echo "--- Setup Complete! ---"
+"""
+
+[tasks."dev"]
+description = "Run both servers concurrently"
+run = "mise run dev:api & mise run dev:web"
+
+[tasks."dev:api"]
+dir = "apps/api"
+run = "uv run python manage.py runserver"
+
+[tasks."dev:web"]
+dir = "apps/web"
+run = "npm run dev"

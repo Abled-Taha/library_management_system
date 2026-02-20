@@ -1,0 +1,4 @@
+*.env
+*.lock
+apps/api/.venv/
+apps/api/db.sqlite3

@@ -1,0 +1,12 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.10.19"
+dependencies = [
+    "django==5.2.11",
+    "django-cors-headers==4.9.0",
+    "djangorestframework==3.16.1",
+    "psycopg2-binary==2.9.11",
+]
