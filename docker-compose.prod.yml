@@ -1,0 +1,17 @@
+services:
+  # Django API (Production Only)
+  api:
+    build: ./apps/api
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
+    environment:
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+    depends_on:
+      - db
+
+  # Next.js Web (Production Only)
+  web:
+    build: ./apps/web
+    environment:
+      - NEXT_PUBLIC_API_URL=https://api.lms.app.abledtaha.online
+    depends_on:
+      - api

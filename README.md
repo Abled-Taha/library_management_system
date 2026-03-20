@@ -8,7 +8,8 @@
     #Linux/Mac
     curl https://mise.run | sh
     ```
+- Install [Docker](https://www.docker.com/get-started/) (WSL2 based engine must be enabled in Docker settings)
 ## Setup Project
 ```bash
-git clone https://github.com/Abled-Taha/library_management_system; cd library_management_system; mise trust; mise run setup
+git clone https://github.com/Abled-Taha/library_management_system ; cd library_management_system ; mise trust ; mise run setup
 ```

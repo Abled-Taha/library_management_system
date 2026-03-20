@@ -23,9 +23,17 @@ run = """
   echo "--- Setup Complete! ---"
 """
 
+[tasks."infra:up"]
+description = "Dev Mode: Start DBs and Auth only"
+run = "docker-compose up -d db logto logto-db"
+
+[tasks."prod:up"]
+description = "Production Mode: Start the entire project in Docker"
+run = "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d"
+
 [tasks."dev"]
 description = "Run both servers concurrently"
-run = "mise run dev:api & mise run dev:web"
+depends = ["infra:up", "dev:api", "dev:web"]
 
 [tasks."dev:api"]
 dir = "apps/api"
